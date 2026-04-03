@@ -13,12 +13,12 @@ mat-icon {
 
 .sidenav {
     width: 300px;
-    border-right: 1px solid rgba(0,0,0,0.25);
+    border-right: 1px solid rgba(0,0,0,0.05);
     border-radius: 0;
 }
 
 .logo-container {
-    border-bottom: 1px solid rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
     padding-left: 16px;
     padding-right: 16px;
     min-height: 56px;
@@ -56,4 +56,8 @@ mat-toolbar, mat-toolbar-row {
             background-color: rgba(0,0,0,0.1)
         }
     }
+}
+
+.router-container {
+    padding: 16px 56px;
 }
