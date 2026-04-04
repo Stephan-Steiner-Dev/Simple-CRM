@@ -4,6 +4,7 @@ import { MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { DialogAddUser } from '../dialog-add-user/dialog-add-user';
+import { AddUser } from '../../models/user.class';
 
 @Component({
   selector: 'app-user',
