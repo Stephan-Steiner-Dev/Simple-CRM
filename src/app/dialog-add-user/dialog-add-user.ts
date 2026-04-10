@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,6 +9,8 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { AddUser } from '../../models/user.class';
 import { FormsModule } from '@angular/forms';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -21,6 +23,8 @@ import { Firestore, collection, addDoc } from '@angular/fire/firestore';
     MatIconModule,
     MatDatepickerModule,
     FormsModule,
+    MatProgressBarModule,
+    CommonModule,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './dialog-add-user.html',
@@ -31,15 +35,21 @@ export class DialogAddUser {
   birthDate: Date | null = null;
   public firestore = inject(Firestore);
   private usersRef = collection(this.firestore, 'users');
+  public loading = false;
+  private dialogRef = inject(MatDialogRef);
 
   saveUser() {
     if (this.birthDate) {
       this.addUser.birthDate = this.birthDate.getTime();
     }
-    console.log(this.addUser);
-
+    this.loading = true;
     addDoc(this.usersRef, this.addUser.toJSON()).then((result: any) => {
-      console.log('Adding user finished', result);
+      this.loading = false;
+      this.dialogRef.close();
     });
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
   }
 }

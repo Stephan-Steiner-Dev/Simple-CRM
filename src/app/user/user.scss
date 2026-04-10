@@ -3,3 +3,17 @@
     right: 56px; 
     bottom: 56px;
 }
+
+.user-table {
+    width: 100%;
+
+    th {
+        color: rgba(0,0,0,0.4);
+        text-align: start;
+        padding-left: 16px;
+    }
+
+    td {
+        padding-left: 16px;
+    }
+}
