@@ -1,19 +1,22 @@
-<mat-card class="user-detail-header">
-    <img class="user-image" src="/assets/images/default-user-img.png" alt="">
-    <div class="user-details">
-        <h2>Max Mustermann</h2>
-        <p>email@email.de</p>
-    </div>
+<mat-card *ngIf="user$ | async as user" class="user-detail-header">
+  <img class="user-image" src="/assets/images/default-user-img.png" alt="" />
+  <div class="user-details">
+    <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+    <p>E-mail: {{ user.email }}</p>
+  </div>
 </mat-card>
 
-<mat-card class="mt-32">
-    <mat-card-header>
-        <mat-card-title>
-            <h3>Address</h3>
-        </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <p>Musterstraße 1</p>
-        <p>71032 dslfjsdf</p>
-    </mat-card-content>
+<mat-card *ngIf="user$ | async as user" class="mt-32 pos-rel">
+  <mat-card-header>
+    <mat-card-title>
+      <h3>Address</h3>
+    </mat-card-title>
+    <button (click)="openAddressDialog()" class="icon" matIconButton>
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-card-content class="detail-content">
+    <p>{{ user.address }}</p>
+    <p>{{ user.zipCode }} {{ user.city }}</p>
+  </mat-card-content>
 </mat-card>
