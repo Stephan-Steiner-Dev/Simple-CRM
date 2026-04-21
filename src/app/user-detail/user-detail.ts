@@ -5,26 +5,30 @@ import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MatIcon } from '@angular/material/icon';
-
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogEditAddress } from '../dialog-edit-address/dialog-edit-address';
+import { DialogEditUser } from '../dialog-edit-user/dialog-edit-user';
 
 @Component({
   selector: 'app-user-detail',
-  imports: [MatCardModule, MatIcon, CommonModule],
+  imports: [MatCardModule, MatIcon, CommonModule, MatMenuModule],
   templateUrl: './user-detail.html',
   styleUrl: './user-detail.scss',
 })
-export class UserDetail{
+export class UserDetail {
   firestore = inject(Firestore);
   route = inject(ActivatedRoute);
   userId: string | null = null;
   user$!: Observable<any>;
+  public dialog = inject(MatDialog);
 
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('id');
 
     if (this.userId) {
       this.user$ = this.getUser(this.userId);
-      console.log(this.user$)
+      console.log(this.user$);
     }
   }
 
@@ -33,5 +37,19 @@ export class UserDetail{
     return docData(userDocRef, { idField: 'id' }) as Observable<any>;
   }
 
-  openAddressDialog() {}
+  editAddress() {
+    this.dialog.open(DialogEditAddress, {
+      data: {
+        user$: this.user$,
+      },
+    });
+  }
+
+  editUserDetail() {
+    this.dialog.open(DialogEditUser, {
+      data: {
+        user$: this.user$,
+      },
+    });
+  }
 }
