@@ -26,3 +26,27 @@ body {
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
 }
+
+.name-input-container {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding-top: 8px;
+}
+
+.user-data-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.city-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.progress-bar {
+    width: 100%;
+}

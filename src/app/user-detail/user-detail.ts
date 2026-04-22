@@ -41,6 +41,7 @@ export class UserDetail {
     this.dialog.open(DialogEditAddress, {
       data: {
         user$: this.user$,
+        userId: this.userId
       },
     });
   }
@@ -49,6 +50,7 @@ export class UserDetail {
     this.dialog.open(DialogEditUser, {
       data: {
         user$: this.user$,
+        userId: this.userId
       },
     });
   }
